@@ -2,7 +2,7 @@ histogram :: [Int] -> String
 histogram x = histogram' (maximum counts) counts
     where counts = countNumbers x
 
-countNumbers x = map (\n -> length $ filter (== n) x) [0..9]
+countNumbers xs = map (\n -> (foldr (\x acc -> if x == n then acc + 1 else acc) 0 xs)) [0..9]
 
 histogram' :: Int -> [Int] -> String
 histogram' 0 _ = drawAxis
