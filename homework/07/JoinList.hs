@@ -1,5 +1,8 @@
+module JoinList where
+
 import Data.Monoid
 import Sized
+import Scrabble
 
 data JoinList m a = Empty
                   | Single m a
@@ -40,3 +43,6 @@ indexJ i (Append m l r)
     | otherwise            = indexJ (getSizeFromTag r - i) r
 
 prop_getZerothElementOfASingle = (Just 'y') == indexJ 0 (Single (Size 3) 'y')
+
+scoreLine :: String -> JoinList Score String
+scoreLine x = (Single (scoreString x) x)
